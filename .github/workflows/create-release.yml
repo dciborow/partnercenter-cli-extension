@@ -6,9 +6,7 @@ on:
     branches:
       - main
     paths:
-      - 'azureiai/**'
-      - 'setup.py'
-      - 'Partner_Ingestion_SwaggerDocument.json'
+      - 'partnercenter/**'
   workflow_dispatch:
 
 jobs:
