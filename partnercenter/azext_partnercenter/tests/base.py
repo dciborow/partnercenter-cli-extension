@@ -21,11 +21,10 @@ class PartnerCenterScenarioTest(ScenarioTest, ABC):
 
     def cmd(self, command, checks=None, expect_failure=False, delay=0):
         """cmd that supports adding a delay into the execution of a command."""
-        if delay > 0 or self.cmd_delay > 0:
-            if delay > 0:
-                time.sleep(delay)
-            else:
-                time.sleep(self.cmd_delay)
+        if delay > 0:
+            time.sleep(delay)
+        elif self.cmd_delay > 0:
+            time.sleep(self.cmd_delay)
         return super().cmd(command, checks=checks, expect_failure=expect_failure)
 
     @abstractmethod

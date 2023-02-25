@@ -474,9 +474,7 @@ class ProductClient(object):
         kwargs['_preload_content'] = kwargs.get(
             '_preload_content', True
         )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
+        kwargs['_request_timeout'] = kwargs.get('_request_timeout')
         kwargs['_check_input_type'] = kwargs.get(
             '_check_input_type', True
         )
@@ -489,9 +487,9 @@ class ProductClient(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['_request_auths'] = kwargs.get('_request_auths')
         kwargs['authorization'] = \
-            authorization
+                authorization
         return self.products_get_endpoint.call_with_http_info(**kwargs)
 
     def products_post(
@@ -559,9 +557,7 @@ class ProductClient(object):
         kwargs['_preload_content'] = kwargs.get(
             '_preload_content', True
         )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
+        kwargs['_request_timeout'] = kwargs.get('_request_timeout')
         kwargs['_check_input_type'] = kwargs.get(
             '_check_input_type', True
         )
@@ -574,9 +570,9 @@ class ProductClient(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['_request_auths'] = kwargs.get('_request_auths')
         kwargs['authorization'] = \
-            authorization
+                authorization
         return self.products_post_endpoint.call_with_http_info(**kwargs)
 
     def products_product_id_delete(
@@ -645,9 +641,7 @@ class ProductClient(object):
         kwargs['_preload_content'] = kwargs.get(
             '_preload_content', True
         )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
+        kwargs['_request_timeout'] = kwargs.get('_request_timeout')
         kwargs['_check_input_type'] = kwargs.get(
             '_check_input_type', True
         )
@@ -660,11 +654,11 @@ class ProductClient(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['_request_auths'] = kwargs.get('_request_auths')
         kwargs['product_id'] = \
-            product_id
+                product_id
         kwargs['authorization'] = \
-            authorization
+                authorization
         return self.products_product_id_delete_endpoint.call_with_http_info(**kwargs)
 
     def products_product_id_get(
@@ -733,9 +727,7 @@ class ProductClient(object):
         kwargs['_preload_content'] = kwargs.get(
             '_preload_content', True
         )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
+        kwargs['_request_timeout'] = kwargs.get('_request_timeout')
         kwargs['_check_input_type'] = kwargs.get(
             '_check_input_type', True
         )
@@ -748,11 +740,11 @@ class ProductClient(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['_request_auths'] = kwargs.get('_request_auths')
         kwargs['product_id'] = \
-            product_id
+                product_id
         kwargs['authorization'] = \
-            authorization
+                authorization
         return self.products_product_id_get_endpoint.call_with_http_info(**kwargs)
 
     def products_product_id_setup_get(
@@ -821,9 +813,7 @@ class ProductClient(object):
         kwargs['_preload_content'] = kwargs.get(
             '_preload_content', True
         )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
+        kwargs['_request_timeout'] = kwargs.get('_request_timeout')
         kwargs['_check_input_type'] = kwargs.get(
             '_check_input_type', True
         )
@@ -836,11 +826,11 @@ class ProductClient(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['_request_auths'] = kwargs.get('_request_auths')
         kwargs['product_id'] = \
-            product_id
+                product_id
         kwargs['authorization'] = \
-            authorization
+                authorization
         return self.products_product_id_setup_get_endpoint.call_with_http_info(**kwargs)
 
     def products_product_id_setup_post(
@@ -910,9 +900,7 @@ class ProductClient(object):
         kwargs['_preload_content'] = kwargs.get(
             '_preload_content', True
         )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
+        kwargs['_request_timeout'] = kwargs.get('_request_timeout')
         kwargs['_check_input_type'] = kwargs.get(
             '_check_input_type', True
         )
@@ -925,10 +913,10 @@ class ProductClient(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['_request_auths'] = kwargs.get('_request_auths')
         kwargs['product_id'] = \
-            product_id
+                product_id
         kwargs['authorization'] = \
-            authorization
+                authorization
         return self.products_product_id_setup_post_endpoint.call_with_http_info(**kwargs)
 

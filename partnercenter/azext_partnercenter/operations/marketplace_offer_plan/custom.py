@@ -9,8 +9,7 @@ def list_plan(client, offer_id):
 
 
 def create_plan(client, offer_id, plan_id, name):
-    result = client.create(offer_id, plan_id, name)
-    return result
+    return client.create(offer_id, plan_id, name)
 
 
 def delete_plan(client, offer_id, plan_id):

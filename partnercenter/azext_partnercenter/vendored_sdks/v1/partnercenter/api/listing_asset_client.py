@@ -477,9 +477,7 @@ class ListingAssetClient(object):
         kwargs['_preload_content'] = kwargs.get(
             '_preload_content', True
         )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
+        kwargs['_request_timeout'] = kwargs.get('_request_timeout')
         kwargs['_check_input_type'] = kwargs.get(
             '_check_input_type', True
         )
@@ -492,15 +490,15 @@ class ListingAssetClient(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['_request_auths'] = kwargs.get('_request_auths')
         kwargs['product_id'] = \
-            product_id
+                product_id
         kwargs['listing_id'] = \
-            listing_id
+                listing_id
         kwargs['asset_id'] = \
-            asset_id
+                asset_id
         kwargs['authorization'] = \
-            authorization
+                authorization
         return self.products_product_id_listings_listing_id_assets_asset_id_delete_endpoint.call_with_http_info(**kwargs)
 
     def products_product_id_listings_listing_id_assets_asset_id_get(
@@ -574,9 +572,7 @@ class ListingAssetClient(object):
         kwargs['_preload_content'] = kwargs.get(
             '_preload_content', True
         )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
+        kwargs['_request_timeout'] = kwargs.get('_request_timeout')
         kwargs['_check_input_type'] = kwargs.get(
             '_check_input_type', True
         )
@@ -589,15 +585,15 @@ class ListingAssetClient(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['_request_auths'] = kwargs.get('_request_auths')
         kwargs['product_id'] = \
-            product_id
+                product_id
         kwargs['listing_id'] = \
-            listing_id
+                listing_id
         kwargs['asset_id'] = \
-            asset_id
+                asset_id
         kwargs['authorization'] = \
-            authorization
+                authorization
         return self.products_product_id_listings_listing_id_assets_asset_id_get_endpoint.call_with_http_info(**kwargs)
 
     def products_product_id_listings_listing_id_assets_asset_id_put(
@@ -671,9 +667,7 @@ class ListingAssetClient(object):
         kwargs['_preload_content'] = kwargs.get(
             '_preload_content', True
         )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
+        kwargs['_request_timeout'] = kwargs.get('_request_timeout')
         kwargs['_check_input_type'] = kwargs.get(
             '_check_input_type', True
         )
@@ -686,15 +680,15 @@ class ListingAssetClient(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['_request_auths'] = kwargs.get('_request_auths')
         kwargs['product_id'] = \
-            product_id
+                product_id
         kwargs['listing_id'] = \
-            listing_id
+                listing_id
         kwargs['asset_id'] = \
-            asset_id
+                asset_id
         kwargs['authorization'] = \
-            authorization
+                authorization
         return self.products_product_id_listings_listing_id_assets_asset_id_put_endpoint.call_with_http_info(**kwargs)
 
     def products_product_id_listings_listing_id_assets_get(
@@ -766,9 +760,7 @@ class ListingAssetClient(object):
         kwargs['_preload_content'] = kwargs.get(
             '_preload_content', True
         )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
+        kwargs['_request_timeout'] = kwargs.get('_request_timeout')
         kwargs['_check_input_type'] = kwargs.get(
             '_check_input_type', True
         )
@@ -781,13 +773,13 @@ class ListingAssetClient(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['_request_auths'] = kwargs.get('_request_auths')
         kwargs['product_id'] = \
-            product_id
+                product_id
         kwargs['listing_id'] = \
-            listing_id
+                listing_id
         kwargs['authorization'] = \
-            authorization
+                authorization
         return self.products_product_id_listings_listing_id_assets_get_endpoint.call_with_http_info(**kwargs)
 
     def products_product_id_listings_listing_id_assets_post(
@@ -859,9 +851,7 @@ class ListingAssetClient(object):
         kwargs['_preload_content'] = kwargs.get(
             '_preload_content', True
         )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
+        kwargs['_request_timeout'] = kwargs.get('_request_timeout')
         kwargs['_check_input_type'] = kwargs.get(
             '_check_input_type', True
         )
@@ -874,12 +864,12 @@ class ListingAssetClient(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['_request_auths'] = kwargs.get('_request_auths')
         kwargs['product_id'] = \
-            product_id
+                product_id
         kwargs['listing_id'] = \
-            listing_id
+                listing_id
         kwargs['authorization'] = \
-            authorization
+                authorization
         return self.products_product_id_listings_listing_id_assets_post_endpoint.call_with_http_info(**kwargs)
 

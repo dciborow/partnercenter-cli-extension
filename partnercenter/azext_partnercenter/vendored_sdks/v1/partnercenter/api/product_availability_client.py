@@ -435,9 +435,7 @@ class ProductAvailabilityClient(object):
         kwargs['_preload_content'] = kwargs.get(
             '_preload_content', True
         )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
+        kwargs['_request_timeout'] = kwargs.get('_request_timeout')
         kwargs['_check_input_type'] = kwargs.get(
             '_check_input_type', True
         )
@@ -450,13 +448,13 @@ class ProductAvailabilityClient(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['_request_auths'] = kwargs.get('_request_auths')
         kwargs['product_id'] = \
-            product_id
+                product_id
         kwargs['instance_id'] = \
-            instance_id
+                instance_id
         kwargs['authorization'] = \
-            authorization
+                authorization
         return self.products_product_id_product_availabilities_get_by_instance_id_instance_i_dinstance_id_get_endpoint.call_with_http_info(**kwargs)
 
     def products_product_id_productavailabilities_get(
@@ -525,9 +523,7 @@ class ProductAvailabilityClient(object):
         kwargs['_preload_content'] = kwargs.get(
             '_preload_content', True
         )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
+        kwargs['_request_timeout'] = kwargs.get('_request_timeout')
         kwargs['_check_input_type'] = kwargs.get(
             '_check_input_type', True
         )
@@ -540,11 +536,11 @@ class ProductAvailabilityClient(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['_request_auths'] = kwargs.get('_request_auths')
         kwargs['product_id'] = \
-            product_id
+                product_id
         kwargs['authorization'] = \
-            authorization
+                authorization
         return self.products_product_id_productavailabilities_get_endpoint.call_with_http_info(**kwargs)
 
     def products_product_id_productavailabilities_post(
@@ -614,9 +610,7 @@ class ProductAvailabilityClient(object):
         kwargs['_preload_content'] = kwargs.get(
             '_preload_content', True
         )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
+        kwargs['_request_timeout'] = kwargs.get('_request_timeout')
         kwargs['_check_input_type'] = kwargs.get(
             '_check_input_type', True
         )
@@ -629,11 +623,11 @@ class ProductAvailabilityClient(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['_request_auths'] = kwargs.get('_request_auths')
         kwargs['product_id'] = \
-            product_id
+                product_id
         kwargs['authorization'] = \
-            authorization
+                authorization
         return self.products_product_id_productavailabilities_post_endpoint.call_with_http_info(**kwargs)
 
     def products_product_id_productavailabilities_product_availability_id_get(
@@ -704,9 +698,7 @@ class ProductAvailabilityClient(object):
         kwargs['_preload_content'] = kwargs.get(
             '_preload_content', True
         )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
+        kwargs['_request_timeout'] = kwargs.get('_request_timeout')
         kwargs['_check_input_type'] = kwargs.get(
             '_check_input_type', True
         )
@@ -719,13 +711,13 @@ class ProductAvailabilityClient(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['_request_auths'] = kwargs.get('_request_auths')
         kwargs['product_id'] = \
-            product_id
+                product_id
         kwargs['product_availability_id'] = \
-            product_availability_id
+                product_availability_id
         kwargs['authorization'] = \
-            authorization
+                authorization
         return self.products_product_id_productavailabilities_product_availability_id_get_endpoint.call_with_http_info(**kwargs)
 
     def products_product_id_productavailabilities_product_availability_id_put(
@@ -797,9 +789,7 @@ class ProductAvailabilityClient(object):
         kwargs['_preload_content'] = kwargs.get(
             '_preload_content', True
         )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
+        kwargs['_request_timeout'] = kwargs.get('_request_timeout')
         kwargs['_check_input_type'] = kwargs.get(
             '_check_input_type', True
         )
@@ -812,12 +802,12 @@ class ProductAvailabilityClient(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['_request_auths'] = kwargs.get('_request_auths')
         kwargs['product_id'] = \
-            product_id
+                product_id
         kwargs['product_availability_id'] = \
-            product_availability_id
+                product_availability_id
         kwargs['authorization'] = \
-            authorization
+                authorization
         return self.products_product_id_productavailabilities_product_availability_id_put_endpoint.call_with_http_info(**kwargs)
 

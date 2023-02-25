@@ -21,10 +21,10 @@ def add_uri(instance, uri_type, subtype, display_text, uri):
 
 
 def list_uri(client, offer_id):
-    listing = client.get(offer_id)
-    if not listing:
+    if listing := client.get(offer_id):
+        return listing.uris
+    else:
         raise CLIError(f'Offer \'{offer_id}\' not found.')
-    return listing.uris
 
 
 def delete_uri(client, offer_id, uri_type=None, subtype=None, display_text=None, uri=None):

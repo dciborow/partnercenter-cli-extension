@@ -27,5 +27,4 @@ def add_technical_configuration_bundle(client, offer_id, plan_id, cluster_extens
             digest=digest
         )]
     )
-    result = client.add_bundle(offer_id, plan_id, properties)
-    return result
+    return client.add_bundle(offer_id, plan_id, properties)
