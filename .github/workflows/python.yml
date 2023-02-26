@@ -13,3 +13,24 @@ jobs:
     uses: microsoft/action-python/.github/workflows/validation.yml@0.3.6
     with:
       workdir: partnercenter
+
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        tools: ['black', 'bandit', 'pylint', 'pyright', 'flake8']
+        include:
+          - tools: pytest
+            args: -m not integration and not gpu
+          - tools: pytest
+            args: -m integration
+    steps:
+      - uses: actions/checkout@v2
+      - name: ${{ matrix.tools }}
+        uses: microsoft/action-python@0.3.6
+        with:
+          ${{ matrix.tools }}: true
+          args: ${{ matrix.args }}
+          workdir: partnercenter
+          testdir: partnercenter/azext_partnercenter/tests
