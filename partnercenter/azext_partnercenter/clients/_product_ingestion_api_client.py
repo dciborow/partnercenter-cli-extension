@@ -168,9 +168,7 @@ class ProductIngestionApiClient:
         path = f"container-plan-technical-configuration/{offer_durable_id}/{plan_durable_id}"
         response = self.__call_api(operation_id, path)
 
-        return self._parse_technical_configuration_response(
-            response, sell_through_microsoft
-        )
+        return self._parse_technical_configuration_response(response, sell_through_microsoft)
 
     def get_resource_tree(self, offer_durable_id):
         """Returns the raw response as a dictionary"""

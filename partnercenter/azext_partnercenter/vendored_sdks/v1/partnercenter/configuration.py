@@ -363,9 +363,7 @@ class Configuration(object):
         """
         username = self.username if self.username is not None else ""
         password = self.password if self.password is not None else ""
-        return urllib3.util.make_headers(basic_auth=f"{username}:{password}").get(
-            "authorization"
-        )
+        return urllib3.util.make_headers(basic_auth=f"{username}:{password}").get("authorization")
 
     def auth_settings(self):
         """Gets Auth Settings dict for api client.

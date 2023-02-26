@@ -211,9 +211,7 @@ class ApiClient(object):
                 encoding = "utf-8"
                 content_type = response_data.getheader("content-type")
                 if content_type is not None:
-                    if match := re.search(
-                        r"charset=([a-zA-Z\-\d]+)[\s\;]?", content_type
-                    ):
+                    if match := re.search(r"charset=([a-zA-Z\-\d]+)[\s\;]?", content_type):
                         encoding = match[1]
                 response_data.data = response_data.data.decode(encoding)
 
@@ -274,9 +272,7 @@ class ApiClient(object):
             return [cls.sanitize_for_serialization(item) for item in obj]
         if isinstance(obj, dict):
             return {key: cls.sanitize_for_serialization(val) for key, val in obj.items()}
-        raise ApiValueError(
-            f"Unable to prepare type {obj.__class__.__name__} for serialization"
-        )
+        raise ApiValueError(f"Unable to prepare type {obj.__class__.__name__} for serialization")
 
     def deserialize(self, response, response_type, _check_type):
         """Deserializes response into an object.
@@ -819,9 +815,7 @@ class Endpoint(object):
             )
         except IndexError:
             if self.settings["servers"]:
-                raise ApiValueError(
-                    f'Invalid host index. Must be 0 <= index < {len(self.settings["servers"])}'
-                )
+                raise ApiValueError(f'Invalid host index. Must be 0 <= index < {len(self.settings["servers"])}')
             _host = None
 
         for key, value in kwargs.items():

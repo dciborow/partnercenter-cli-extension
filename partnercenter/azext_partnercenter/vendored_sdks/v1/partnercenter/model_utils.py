@@ -86,10 +86,7 @@ def allows_single_value_input(cls):
         return True
     elif issubclass(cls, ModelComposed):
         return (
-            any(
-                allows_single_value_input(c)
-                for c in cls._composed_schemas["oneOf"]
-            )
+            any(allows_single_value_input(c) for c in cls._composed_schemas["oneOf"])
             if cls._composed_schemas["oneOf"]
             else False
         )
@@ -272,9 +269,7 @@ class OpenApiModel(object):
             return super(OpenApiModel, cls).__new__(cls)
 
         if cls._composed_schemas is not None:
-            oneof_anyof_classes = cls._composed_schemas.get(
-                "oneOf", ()
-            ) + cls._composed_schemas.get("anyOf", ())
+            oneof_anyof_classes = cls._composed_schemas.get("oneOf", ()) + cls._composed_schemas.get("anyOf", ())
         else:
             oneof_anyof_classes = None
         oneof_anyof_child = new_cls in oneof_anyof_classes
@@ -620,9 +615,7 @@ class ModelComposed(OpenApiModel):
         if name in self.required_properties:
             return name in self.__dict__
 
-        if model_instances := self._var_name_to_model_instances.get(
-            name, self._additional_properties_model_instances
-        ):
+        if model_instances := self._var_name_to_model_instances.get(name, self._additional_properties_model_instances):
             for model_instance in model_instances:
                 if name in model_instance._data_store:
                     return True
@@ -1158,11 +1151,7 @@ def deserialize_primitive(data, klass, path_to_item):
                 return parse(data).date()
         else:
             converted_value = klass(data)
-            if (
-                isinstance(data, str)
-                and klass == float
-                and str(converted_value) != data
-            ):
+            if isinstance(data, str) and klass == float and str(converted_value) != data:
                 # '7' -> 7.0 -> '7.0' != '7'
                 raise ValueError("This is not a float")
             return converted_value
@@ -1338,9 +1327,7 @@ def attempt_convert_item(
     """
     valid_classes_ordered = order_response_types(valid_classes)
     valid_classes_coercible = remove_uncoercible(valid_classes_ordered, input_value, spec_property_naming)
-    if (not valid_classes_coercible or key_type) and (
-        configuration is None or not configuration.discard_unknown_keys
-    ):
+    if (not valid_classes_coercible or key_type) and (configuration is None or not configuration.discard_unknown_keys):
         raise get_type_error(input_value, path_to_item, valid_classes, key_type=key_type)
     for valid_class in valid_classes_coercible:
         try:
@@ -1466,11 +1453,7 @@ def validate_and_convert_types(
     input_class_simple = get_simple_class(input_value)
     valid_type = is_valid_type(input_class_simple, valid_classes)
     if not valid_type:
-        if (
-            configuration
-            or input_class_simple == dict
-            and dict not in valid_classes
-        ):
+        if configuration or input_class_simple == dict and dict not in valid_classes:
             return attempt_convert_item(
                 input_value,
                 valid_classes,
@@ -1629,14 +1612,11 @@ def type_error_message(var_value=None, var_name=None, valid_classes=None, key_ty
     """
     key_or_value = "key" if key_type else "value"
     valid_classes_phrase = get_valid_classes_phrase(valid_classes)
-    return (
-        "Invalid type for variable '{0}'. Required {1} type {2} and "
-        "passed type was {3}".format(
-            var_name,
-            key_or_value,
-            valid_classes_phrase,
-            type(var_value).__name__,
-        )
+    return "Invalid type for variable '{0}'. Required {1} type {2} and " "passed type was {3}".format(
+        var_name,
+        key_or_value,
+        valid_classes_phrase,
+        type(var_value).__name__,
     )
 
 
@@ -1731,9 +1711,7 @@ def get_oneof_instance(cls, model_kwargs, constant_kwargs, model_arg=None):
         try:
             if not single_value_input:
                 oneof_instance = (
-                    oneof_class._from_openapi_data(
-                        **model_kwargs, **constant_kwargs
-                    )
+                    oneof_class._from_openapi_data(**model_kwargs, **constant_kwargs)
                     if constant_kwargs.get("_spec_property_naming")
                     else oneof_class(**model_kwargs, **constant_kwargs)
                 )
@@ -1903,10 +1881,7 @@ def validate_get_composed_info(constant_args, model_args, self):
     discarded_args = get_discarded_args(self, composed_instances, model_args)
 
     var_name_to_model_instances = {
-        prop_name: [self]
-        + list(
-            filter(lambda x: prop_name in x.openapi_types, composed_instances)
-        )
+        prop_name: [self] + list(filter(lambda x: prop_name in x.openapi_types, composed_instances))
         for prop_name in model_args
         if prop_name not in discarded_args
     }

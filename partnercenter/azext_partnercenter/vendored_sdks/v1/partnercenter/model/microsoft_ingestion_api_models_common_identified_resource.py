@@ -121,7 +121,7 @@ class MicrosoftIngestionApiModelsCommonIdentifiedResource(ModelComposed):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, *args, **kwargs):    # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """MicrosoftIngestionApiModelsCommonIdentifiedResource - a model defined in OpenAPI
 
         Keyword Args:
@@ -226,7 +226,7 @@ class MicrosoftIngestionApiModelsCommonIdentifiedResource(ModelComposed):
     )
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):    # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """MicrosoftIngestionApiModelsCommonIdentifiedResource - a model defined in OpenAPI
 
         Keyword Args:
