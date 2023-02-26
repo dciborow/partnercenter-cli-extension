@@ -51,6 +51,7 @@ EXTRA_DEPENDENCIES = {
     'test': [
         'azure-cli-core',
         'azure-cli-testsdk',
+        'pytest'
     ]
 }
 
