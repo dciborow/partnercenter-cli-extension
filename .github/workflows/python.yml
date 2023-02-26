@@ -37,6 +37,7 @@ jobs:
           python -m pip install --user --upgrade pytest
 
           cd partnercenter
+          python -m pip install --user azure-cli azure-cli-core azure-cli-testsdk
           python -m pip install --user --upgrade .[test]
 
           python -m pytest azext_partnercenter/tests
