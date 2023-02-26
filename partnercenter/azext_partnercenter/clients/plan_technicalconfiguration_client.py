@@ -101,11 +101,14 @@ class PlanTechnicalConfigurationClient(BaseClient):
                 offer_durable_id, self._get_access_token()
             )
         )
-        for v in variants:
-            if v["resourceType"] == resource_type and v["state"] == "Active":
-                if v["externalID"] == plan_external_id:
-                    return v
-        return None
+        return next(
+            (
+                v
+                for v in variants
+                if v["resourceType"] == resource_type and v["state"] == "Active" and v["externalID"] == plan_external_id
+            ),
+            None,
+        )
 
     def _get_plan_technical_configuration(self, offer_durable_id, plan_durable_id):
         """Since we don't know what type of technical plan this will be for now unless we map the types to the schema, this gets any technical configuration type"""

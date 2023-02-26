@@ -23,7 +23,7 @@ def verify(manifest_file):
 def bundle(manifest_file):
     container = _get_container(manifest_file)
     acr_name = _get_acr_name(manifest_file)
-    result = container.exec_run("az acr login -n " + acr_name)
+    result = container.exec_run(f"az acr login -n {acr_name}")
     result = container.exec_run("cpa buildbundle", workdir="/cpaMount")
     return result
 
@@ -50,8 +50,7 @@ def _run_container(container_name, mount_path):
     img = "mcr.microsoft.com/container-package-app:latest"
     cmd = "sleep infinity"
     volumes = ["/var/run/docker.sock:/var/run/docker.sock", f"{mount_path}:/cpaMount", f"{absolute_path}:/root/.azure"]
-    container = client.containers.run(img, cmd, detach=True, volumes=volumes, name=container_name)
-    return container
+    return client.containers.run(img, cmd, detach=True, volumes=volumes, name=container_name)
 
 
 def _get_mount_path(manifest_file):
@@ -83,9 +82,7 @@ class VerifyResult:
 
         if parsed_json_result["templates"]:
             mapped_templates = list(map(json.loads, parsed_json_result["templates"]))
-            parsed_response = {}
-            parsed_response["templates"] = mapped_templates
-            return parsed_response
+            return {"templates": mapped_templates}
         lines = parsed_json_result["stripped"].splitlines()
         lines = list(filter(None, lines))
         for idx, x in enumerate(lines):
@@ -115,7 +112,7 @@ class VerifyResult:
                 parsed_artifact["Failures"] = template_failures
                 current_idx = current_idx + len(template_failures) + 1
             parsed_response.append(parsed_artifact)
-            appended_templates = appended_templates + 1
+            appended_templates += 1
 
     def _update_known_validation_response(self, parsed_response, lines, idx, file, total_file_failures):
         parsed_artifact = self._init_parsed_artifact(file, total_file_failures)
@@ -125,15 +122,11 @@ class VerifyResult:
         parsed_response.append(parsed_artifact)
 
     def _init_parsed_artifact(self, file, failures):
-        parsed_artifact = {}
-        parsed_artifact["Artifact Name"] = file
-        parsed_artifact["Total Failures"] = failures
-        return parsed_artifact
+        return {"Artifact Name": file, "Total Failures": failures}
 
     def _get_template_failures(self, start_idx, failure_cnt, lines):
         end_idx = start_idx + failure_cnt
-        template_failures = list(map(lambda x: x.strip(), lines[start_idx:end_idx]))
-        return template_failures
+        return list(map(lambda x: x.strip(), lines[start_idx:end_idx]))
 
     def _get_template_file_cnt(self, file):
         template_files = 0
@@ -149,8 +142,7 @@ class VerifyResult:
         file_name = file_part[1].strip()
         failures = x[1].split()[0]
         failures = failures.strip()
-        result = {"file": file_name, "failures": int(failures)}
-        return result
+        return {"file": file_name, "failures": int(failures)}
 
     def _is_known_validation(self, file):
         known_validations = ["manifest", "helm"]
@@ -167,8 +159,7 @@ class VerifyResult:
         file_name = x[0].split()[0]
         failures = x[1].split()[0]
         failures = failures.strip()
-        result = {"file": file_name, "failures": int(failures)}
-        return result
+        return {"file": file_name, "failures": int(failures)}
 
     def _parse_json(self):
         import re
@@ -178,5 +169,4 @@ class VerifyResult:
         returned_list = pattern.findall(output)
         for json_string in returned_list:
             output = output.replace(json_string, "")
-        parsed_results = {"stripped": output, "templates": returned_list}
-        return parsed_results
+        return {"stripped": output, "templates": returned_list}

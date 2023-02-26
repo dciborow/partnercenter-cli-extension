@@ -17,9 +17,9 @@ class Plan(Model):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.id = kwargs.get("id", None)
-        self.name = kwargs.get("name", None)
-        self.offer_id = kwargs.get("offer_id", None)
-        self.state = kwargs.get("state", None)
+        self.id = kwargs.get("id")
+        self.name = kwargs.get("name")
+        self.offer_id = kwargs.get("offer_id")
+        self.state = kwargs.get("state")
         self.cloud_availabilities = kwargs.get("cloud_availabilities", [])
-        self._resource = kwargs.get("resource", None)
+        self._resource = kwargs.get("resource")

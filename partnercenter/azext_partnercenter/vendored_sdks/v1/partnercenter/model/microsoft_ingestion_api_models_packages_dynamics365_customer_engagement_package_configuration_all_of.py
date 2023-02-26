@@ -199,14 +199,10 @@ class MicrosoftIngestionApiModelsPackagesDynamics365CustomerEngagementPackageCon
         if args:
             for arg in args:
                 if isinstance(arg, dict):
-                    kwargs.update(arg)
+                    kwargs |= arg
                 else:
                     raise ApiTypeError(
-                        "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments."
-                        % (
-                            args,
-                            self.__class__.__name__,
-                        ),
+                        f"Invalid positional arguments={args} passed to {self.__class__.__name__}. Remove those invalid positional arguments.",
                         path_to_item=_path_to_item,
                         valid_classes=(self.__class__,),
                     )
@@ -294,14 +290,10 @@ class MicrosoftIngestionApiModelsPackagesDynamics365CustomerEngagementPackageCon
         if args:
             for arg in args:
                 if isinstance(arg, dict):
-                    kwargs.update(arg)
+                    kwargs |= arg
                 else:
                     raise ApiTypeError(
-                        "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments."
-                        % (
-                            args,
-                            self.__class__.__name__,
-                        ),
+                        f"Invalid positional arguments={args} passed to {self.__class__.__name__}. Remove those invalid positional arguments.",
                         path_to_item=_path_to_item,
                         valid_classes=(self.__class__,),
                     )

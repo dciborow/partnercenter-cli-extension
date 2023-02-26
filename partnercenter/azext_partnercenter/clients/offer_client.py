@@ -67,8 +67,7 @@ class OfferClient(BaseClient):
     def publish(self, offer_external_id, target):
         """Publishes all draft changes for the offer to the target environment"""
         offer = self.get(offer_external_id)
-        result = self._graph_api_client.publish_submission(target, offer._resource.durable_id)
-        return result
+        return self._graph_api_client.publish_submission(target, offer._resource.durable_id)
 
     def _map_product_to_offer(self, product):
         return Offer(
@@ -114,8 +113,7 @@ class OfferClient(BaseClient):
             microsoft_ingestion_api_models_products_azure_product_setup=api_product_setup,
         )
 
-        offer_setup = self.get_setup(parameters.id)
-        return offer_setup
+        return self.get_setup(parameters.id)
 
     def _map_setup(
         self, offer_external_id, api_setup: MicrosoftIngestionApiModelsProductsAzureProductSetup
@@ -123,14 +121,13 @@ class OfferClient(BaseClient):
         reseller = (next((x for x in api_setup.channel_states if x["type"] == "Reseller"), None))["value"] == "Enabled"
         sell_through_microsoft = api_setup.selling_option == "ListAndSell"
 
-        offer_setup = OfferSetup(
+        return OfferSetup(
             id=offer_external_id,
             reseller=reseller,
             test_drive=api_setup.enable_test_drive,
             sell_through_microsoft=sell_through_microsoft,
             trial_uri=api_setup.trial_uri,
         )
-        return offer_setup
 
     def _map_channel_state(self, channel_state):
         return {"type": channel_state.type, "value": channel_state.value}
