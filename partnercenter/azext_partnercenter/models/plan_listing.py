@@ -17,9 +17,9 @@ class PlanListing(Model):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.id = kwargs.get('id', None)
-        self.offer_id = kwargs.get('offer_id', None)
-        self.name = kwargs.get('name', None)
-        self.summary = kwargs.get('summary', None)
-        self.description = kwargs.get('description', None)
-        self._resource = kwargs.get('resource', None)
+        self.id = kwargs.get('id')
+        self.offer_id = kwargs.get('offer_id')
+        self.name = kwargs.get('name')
+        self.summary = kwargs.get('summary')
+        self.description = kwargs.get('description')
+        self._resource = kwargs.get('resource')

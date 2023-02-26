@@ -29,10 +29,12 @@ class PartnerCenterMarketplaceOfferPlanListingScenarioTest(PartnerCenterScenario
 
     def init_args(self):
         self.plan_id = self.create_random_name('plantest-', 15)
-        self.kwargs.update({
-            'updated_name': 'updated name',
-            'updated_summary': 'updated summary',
-            'updated_description': 'updated description',
-            'plan_id': self.plan_id,
-            'plan_name': self.plan_id + ' name'
-        })
+        self.kwargs.update(
+            {
+                'updated_name': 'updated name',
+                'updated_summary': 'updated summary',
+                'updated_description': 'updated description',
+                'plan_id': self.plan_id,
+                'plan_name': f'{self.plan_id} name',
+            }
+        )

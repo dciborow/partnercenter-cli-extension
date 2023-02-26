@@ -20,10 +20,10 @@ class ListingImage(Model):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.file_name = kwargs.get('fileName', None)
-        self.type = kwargs.get('type', None)
-        self.file_sas_uri = kwargs.get('fileSasUri', None)
-        self.state = kwargs.get('state', None)
-        self.order = kwargs.get('order', None)
-        self.odata_etag = kwargs.get('odata_etag', None)
-        self.id = kwargs.get('id', None)
+        self.file_name = kwargs.get('fileName')
+        self.type = kwargs.get('type')
+        self.file_sas_uri = kwargs.get('fileSasUri')
+        self.state = kwargs.get('state')
+        self.order = kwargs.get('order')
+        self.odata_etag = kwargs.get('odata_etag')
+        self.id = kwargs.get('id')

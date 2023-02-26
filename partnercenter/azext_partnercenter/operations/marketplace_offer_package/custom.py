@@ -42,8 +42,7 @@ def _execute_action_by_offer_type(client, offer_id, action):
 
 
 def _verify_cnab_bundle(manifest_file):
-    result = verify(manifest_file)
-    return result
+    return verify(manifest_file)
 
 
 def _build_cnab_bundle(manifest_file):

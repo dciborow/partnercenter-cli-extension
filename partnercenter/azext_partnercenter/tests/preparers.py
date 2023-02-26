@@ -73,4 +73,7 @@ class MarketplaceOfferPreparer(NoTrafficRecordingPreparer, SingleValueReplacer):
 
     def remove_resource(self, name, **kwargs):
         if not self.skip_delete and not self.dev_setting_name:
-            self.live_only_execute(self.cli_ctx, 'az partnercenter marketplace offer delete --id {} --yes'.format(name))
+            self.live_only_execute(
+                self.cli_ctx,
+                f'az partnercenter marketplace offer delete --id {name} --yes',
+            )

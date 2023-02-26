@@ -5,8 +5,7 @@
 
 
 def create_offer(client, offer_id, offer_alias, offer_type):
-    result = client.create(offer_id, offer_alias, offer_type)
-    return result
+    return client.create(offer_id, offer_alias, offer_type)
 
 
 def update_offer(instance):

@@ -5,9 +5,7 @@
 
 
 def list_media(client, offer_id):
-    # TODO: implement beyond images
-    images = client.get_listing_images(offer_id)
-    return images
+    return client.get_listing_images(offer_id)
 
 
 def add_media(client, offer_id, file, media_type=None):
@@ -15,5 +13,4 @@ def add_media(client, offer_id, file, media_type=None):
 
 
 def delete_media(client, offer_id, media_type):
-    result = client.delete_listing_image(offer_id, media_type)
-    return result
+    return client.delete_listing_image(offer_id, media_type)

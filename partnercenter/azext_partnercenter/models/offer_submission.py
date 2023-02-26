@@ -19,10 +19,10 @@ class OfferSubmission(Model):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.id = kwargs.get('id', None)
-        self.offer_id = kwargs.get('offer_id', None)
-        self.lifecycle_state = kwargs.get('lifecycle_state', None)
-        self.target = kwargs.get('target', None)
-        self.status = kwargs.get('status', None)
-        self.result = kwargs.get('result', None)
-        self.created = kwargs.get('created', None)
+        self.id = kwargs.get('id')
+        self.offer_id = kwargs.get('offer_id')
+        self.lifecycle_state = kwargs.get('lifecycle_state')
+        self.target = kwargs.get('target')
+        self.status = kwargs.get('status')
+        self.result = kwargs.get('result')
+        self.created = kwargs.get('created')

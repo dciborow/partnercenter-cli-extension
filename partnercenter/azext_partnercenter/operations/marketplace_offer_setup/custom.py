@@ -44,8 +44,7 @@ def marketplace_offer_setup_update_set(client, offer_id, parameters=None):
     listing.contacts = parameters.contacts
     listing.uris = parameters.uris
 
-    result = client.create_or_update(offer_id, listing)
-    return result
+    return client.create_or_update(offer_id, listing)
 
 
 def marketplace_offer_setup_update_custom(instance, summary=None, short_description=None, description=None):
