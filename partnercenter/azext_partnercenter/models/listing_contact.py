@@ -17,11 +17,11 @@ class ListingContact(Model):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.type = kwargs.get("type", None)
-        self.name = kwargs.get("name", None)
-        self.email = kwargs.get("email", None)
-        self.phone = kwargs.get("phone", None)
-        self.uri = kwargs.get("uri", None)
+        self.type = kwargs.get("type")
+        self.name = kwargs.get("name")
+        self.email = kwargs.get("email")
+        self.phone = kwargs.get("phone")
+        self.uri = kwargs.get("uri")
 
     def is_equal(self, other):
         return (

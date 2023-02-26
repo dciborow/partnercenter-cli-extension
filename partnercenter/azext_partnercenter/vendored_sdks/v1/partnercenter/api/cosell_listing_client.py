@@ -234,13 +234,13 @@ class CosellListingClient(object):
         kwargs["async_req"] = kwargs.get("async_req", False)
         kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
         kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
         kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
         kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
         kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
         kwargs["_content_type"] = kwargs.get("_content_type")
         kwargs["_host_index"] = kwargs.get("_host_index")
-        kwargs["_request_auths"] = kwargs.get("_request_auths", None)
+        kwargs["_request_auths"] = kwargs.get("_request_auths")
         kwargs["product_id"] = product_id
         kwargs["instance_id"] = instance_id
         return self.products_product_id_cosell_listing_get_by_instance_id_instance_i_dinstance_id_get_endpoint.call_with_http_info(
@@ -301,13 +301,13 @@ class CosellListingClient(object):
         kwargs["async_req"] = kwargs.get("async_req", False)
         kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
         kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
         kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
         kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
         kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
         kwargs["_content_type"] = kwargs.get("_content_type")
         kwargs["_host_index"] = kwargs.get("_host_index")
-        kwargs["_request_auths"] = kwargs.get("_request_auths", None)
+        kwargs["_request_auths"] = kwargs.get("_request_auths")
         kwargs["product_id"] = product_id
         kwargs["instance_id"] = instance_id
         return self.products_product_id_cosell_listing_instance_id_get_endpoint.call_with_http_info(**kwargs)
@@ -367,13 +367,13 @@ class CosellListingClient(object):
         kwargs["async_req"] = kwargs.get("async_req", False)
         kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
         kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
         kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
         kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
         kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
         kwargs["_content_type"] = kwargs.get("_content_type")
         kwargs["_host_index"] = kwargs.get("_host_index")
-        kwargs["_request_auths"] = kwargs.get("_request_auths", None)
+        kwargs["_request_auths"] = kwargs.get("_request_auths")
         kwargs["product_id"] = product_id
         kwargs["instance_id"] = instance_id
         return self.products_product_id_cosell_listing_instance_id_put_endpoint.call_with_http_info(**kwargs)

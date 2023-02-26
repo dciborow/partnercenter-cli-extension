@@ -40,6 +40,6 @@ class PartnerCenterMarketplaceOfferPlanListingScenarioTest(PartnerCenterScenario
                 "updated_summary": "updated summary",
                 "updated_description": "updated description",
                 "plan_id": self.plan_id,
-                "plan_name": self.plan_id + " name",
+                "plan_name": f"{self.plan_id} name",
             }
         )
