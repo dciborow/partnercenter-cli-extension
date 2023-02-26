@@ -11,22 +11,30 @@ class PartnerCenterMarketplaceOfferListingScenarioTest(PartnerCenterScenarioTest
 
     @MarketplaceOfferPreparer()
     def test_marketplace_offer_listing(self):
-        self.cmd('partnercenter marketplace offer listing show --offer-id {offer_id}',
-                 checks=[self.check('description', ''),
-                         self.check('shortDescription', ''),
-                         self.check('summary', '')])
+        command_root = "partnercenter marketplace offer listing"
+        command_show = command_root + ' show --offer-id {offer_id}'
+        command_update = command_root + ' update --offer-id {offer_id} --summary {summary} --short-description {short_description} --description {description}'
+        
+        initial_checks = [
+            self.check('description', ''),
+            self.check('shortDescription', ''),
+            self.check('summary', ''),
+        ]
+        update_checks = [
+            self.check('description', '{description}'),
+            self.check('shortDescription', '{short_description}'),
+            self.check('summary', '{summary}'),
+        ]
+        show_checks = [
+            self.check('description', '{description}'),
+            self.check('shortDescription', '{short_description}'),
+            self.check('summary', '{summary}'),
+            self.check('contacts', []), self.check('uris', []),
+        ]
 
-        self.cmd('partnercenter marketplace offer listing update --offer-id {offer_id} --summary {summary} --short-description {short_description} --description {description}',
-                 checks=[self.check('description', '{description}'),
-                         self.check('shortDescription', '{short_description}'),
-                         self.check('summary', '{summary}')])
-
-        self.cmd('partnercenter marketplace offer listing show --offer-id {offer_id}',
-                 checks=[self.check('description', '{description}'),
-                         self.check('shortDescription', '{short_description}'),
-                         self.check('summary', '{summary}'),
-                         self.check('contacts', []),
-                         self.check('uris', [])], delay=5)
+        self.cmd(command_show, checks=initial_checks)
+        self.cmd(command_update, checks=update_checks)     
+        self.cmd(command_show, checks=show_checks, delay=5)
 
     def init_args(self):
         self.kwargs.update({

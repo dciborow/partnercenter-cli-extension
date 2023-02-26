@@ -14,14 +14,19 @@ class PartnerCenterMarketplaceOfferListingMediaScenarioTest(PartnerCenterScenari
 
     @MarketplaceOfferPreparer()
     def test_marketplace_offer_listing_media_large_logo(self):
-        self.cmd('partnercenter marketplace offer listing media add --offer-id {offer_id} --type {large_logo_media_type} --file {large_logo_file}',
-                 checks=[self.check('state', '{add_cmd_state}'),
-                         self.check('type', '{large_logo_media_type}')])
+        command_root="partnercenter marketplace offer listing media"
+        parameters="""
+    --offer-id {offer_id} \
+    --type {large_logo_media_type} \
+    --file {large_logo_file}
+"""
 
-        self.cmd('partnercenter marketplace offer listing media delete --offer-id {offer_id} --type {large_logo_media_type} --yes')
-
-        result = self.cmd('partnercenter marketplace offer listing media list --offer-id {offer_id} ').get_output_in_json()
-        self.assertEqual(len(result), 0)
+        create_checks = [
+            self.check('state', '{add_cmd_state}'),
+            self.check('type', '{large_logo_media_type}'),
+        ]
+     
+        self._validate_create_delete(command_root, parameters, create_checks)
 
     def init_args(self):
         large_logo_abs_path = self.test_data.add("marketplace_offer_listing_media/largelogo.png")

@@ -15,17 +15,27 @@ class PartnerCenterMarketplaceOfferPlanListingScenarioTest(PartnerCenterScenario
 
     @MarketplaceOfferPreparer()
     def test_marketplace_offer_plan_listing(self):
+        command_root = "partnercenter marketplace offer plan"
+        
+        show_command = command_root + ' listing show --offer-id {offer_id} --id {plan_id}'
+        create_command = command_root + " create --offer-id {offer_id} --id {plan_id} -n '{plan_name}'"
+        update_command = command_root + " listing update --offer-id {offer_id} --id {plan_id} -n '{updated_name}' -s '{updated_summary}' -d '{updated_description}'"
+        
+        create_checks = [
+            self.check('id', '{plan_id}'),
+            self.check('name', '{plan_name}'),
+        ]
+        update_checks = [
+            self.check('name', '{updated_name}'),
+            self.check('summary', '{updated_summary}'),
+            self.check('description', '{updated_description}'),
+        ]
+
         with self.assertRaises(ResourceNotFoundError):
-            self.cmd('partnercenter marketplace offer plan listing show --offer-id {offer_id} --id {plan_id}')
+            self.cmd(show_command)
 
-        self.cmd('partnercenter marketplace offer plan create --offer-id {offer_id} --id {plan_id} -n \'{plan_name}\'',
-                 checks=[self.check('id', '{plan_id}'),
-                         self.check('name', '{plan_name}')])
-
-        self.cmd('partnercenter marketplace offer plan listing update --offer-id {offer_id} --id {plan_id} -n \'{updated_name}\' -s \'{updated_summary}\' -d \'{updated_description}\'',
-                 checks=[self.check('name', '{updated_name}'),
-                         self.check('summary', '{updated_summary}'),
-                         self.check('description', '{updated_description}')])
+        self.cmd(create_command, checks=create_checks)
+        self.cmd(update_command, checks=update_checks)
 
     def init_args(self):
         self.plan_id = self.create_random_name('plantest-', 15)

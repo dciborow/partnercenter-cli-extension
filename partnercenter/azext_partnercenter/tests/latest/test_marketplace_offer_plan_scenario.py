@@ -14,17 +14,22 @@ class PartnerCenterMarketplaceOfferPlanScenarioTest(PartnerCenterScenarioTest):
 
     @MarketplaceOfferPreparer()
     def test_marketplace_offer_plan(self):
-        self.cmd('partnercenter marketplace offer plan create --offer-id {offer_id} --id {plan_id} -n \'{plan_name}\'',
-                 checks=[self.check('id', '{plan_id}'),
-                         self.check('name', '{plan_name}')])
+        command_root = "partnercenter marketplace offer plan"
 
-        self.cmd('partnercenter marketplace offer plan show --offer-id {offer_id} --id {plan_id}',
-                 checks=[self.check('id', '{plan_id}'),
-                         self.check('name', '{plan_name}')])
+        create_command = command_root + ' create --offer-id {offer_id} --id {plan_id} -n \'{plan_name}\''
+        show_command = command_root + ' show --offer-id {offer_id} --id {plan_id}'
+        delete_command = command_root + ' delete --offer-id {offer_id} --id {plan_id}'
+        list_command = command_root + ' list --offer-id {offer_id} '
+        
+        parameter_checks = [
+            self.check('id', '{plan_id}'),
+            self.check('name', '{plan_name}'),
+        ]
 
-        self.cmd('partnercenter marketplace offer plan delete --offer-id {offer_id} --id {plan_id}')
-
-        result = self.cmd('partnercenter marketplace offer plan list --offer-id {offer_id} ').get_output_in_json()
+        self.cmd(create_command, checks=parameter_checks)
+        self.cmd(show_command, checks=parameter_checks)
+        self.cmd(delete_command)
+        result = self.cmd(list_command).get_output_in_json()
         self.assertEqual(len(result), 0)
 
     def init_args(self):

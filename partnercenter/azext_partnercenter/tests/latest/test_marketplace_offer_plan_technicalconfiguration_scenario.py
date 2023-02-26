@@ -13,10 +13,14 @@ class PartnerCenterMarketplaceOfferPlanTechnicalConfigurationScenarioTest(Partne
         pass
 
     def _create_plan(self):
-        self.cmd('partnercenter marketplace offer plan create --offer-id {offer_id} --plan-id {plan_id} --friendly-name {plan_name}', checks=[
+        command_root = "partnercenter marketplace offer plan"
+        create_command = command_root + ' create --offer-id {offer_id} --plan-id {plan_id} --friendly-name {plan_name}'
+        parameter_checks = [
             self.check('', '{offer_id}'),
             self.check('alias', '{offer_alias}')
-        ])
+        ]
+
+        self.cmd(create_command, checks=parameter_checks)
 
     def init_args(self):
         self.plan_id = self.create_random_name('plan-', 15)

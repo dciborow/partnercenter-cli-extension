@@ -4,18 +4,19 @@
 # --------------------------------------------------------------------------------------------
 
 from azext_partnercenter.tests.preparers import MarketplaceOfferPreparer
-from ..base import PartnerCenterScenarioTest
+from ..base import MarketplaceTest
 
 
-class PartnerCenterMarketplaceOfferListingContactScenarioTest(PartnerCenterScenarioTest):
-    def setUp(self):
-        self.cmd_delay = 5  # delay each cmd by 5 sec, default
-        super().setUp()
+class PartnerCenterMarketplaceOfferListingContactScenarioTest(MarketplaceTest):
 
-    @MarketplaceOfferPreparer()
     def test_marketplace_offer_listing_contact(self):
-        command_root="partnercenter marketplace offer listing contact"
-        parameters = """
+        self._marketplace_offer_test()
+
+    def _command_root(self):
+        return "partnercenter marketplace offer listing contact"
+    
+    def _command_parameters(self) -> str:
+        return """
     --offer-id {offer_id} \
     --type {contact_type} \
     --email {contact_email} \
@@ -23,8 +24,9 @@ class PartnerCenterMarketplaceOfferListingContactScenarioTest(PartnerCenterScena
     --phone {contact_phone} \
     --uri {contact_uri}
 """
-
-        create_checks = [
+ 
+    def _create_checks(self):
+        return [
             self.check('[0].type', '{contact_type}'),
             self.check('[0].email', '{contact_email}'),
             self.check('[0].name', '{contact_name}'),
@@ -32,8 +34,10 @@ class PartnerCenterMarketplaceOfferListingContactScenarioTest(PartnerCenterScena
             self.check('[0].uri', '{contact_uri}')
         ]
 
-        self._validate_create_delete(command_root, parameters, create_checks)
- 
+    def setUp(self):
+        self.cmd_delay = 5  # delay each cmd by 5 sec, default
+        super().setUp()
+
     def init_args(self):
         self.kwargs.update({
             'contact_type': 'Engineering',

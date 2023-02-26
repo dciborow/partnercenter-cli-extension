@@ -14,14 +14,24 @@ class PartnerCenterMarketplaceOfferListingUriScenarioTest(PartnerCenterScenarioT
 
     @MarketplaceOfferPreparer()
     def test_marketplace_offer_listing_uri(self):
-        self.cmd('partnercenter marketplace offer listing uri add --offer-id {offer_id} --type {uri_type} --subtype {uri_sub_type} --display-text {uri_display_text} --uri {uri}',
-                 checks=[self.check('[0].type', '{uri_type}'),
-                         self.check('[0].subtype', '{uri_sub_type}'),
-                         self.check('[0].displayText', '{uri_display_text}'),
-                         self.check('[0].uri', '{uri}')])
+        command_root="partnercenter marketplace offer listing uri"
+        parameters="""
+    --offer-id {offer_id} \
+    --type {uri_type} \
+    --subtype {uri_sub_type} \
+    --display-text {uri_display_text} \
+    --uri {uri}
+"""
+    
+        create_checks = [
+            self.check('[0].type', '{uri_type}'),
+            self.check('[0].subtype', '{uri_sub_type}'),
+            self.check('[0].displayText', '{uri_display_text}'),
+            self.check('[0].uri', '{uri}'),
+        ]
+        list_checks = [self.check('uris', [])]
 
-        self.cmd('partnercenter marketplace offer listing uri delete --offer-id {offer_id} --type {uri_type} --subtype {uri_sub_type} --display-text {uri_display_text} --uri {uri} --yes')
-        self.cmd('az partnercenter marketplace offer listing show --offer-id {offer_id}', checks=[self.check('uris', [])])
+        self._validate_create_delete(command_root, parameters, create_checks, list_checks=list_checks)
 
     def init_args(self):
         self.kwargs.update({
