@@ -22,9 +22,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: ${{ matrix.tools }}
-        uses: microsoft/action-python@0.3.6
+        uses: microsoft/action-python@0.3.7
         with:
           ${{ matrix.tools }}: true
           args: ${{ matrix.args }}
           workdir: partnercenter
-          testdir: partnercenter/azext_partnercenter/tests
+          testdir: azext_partnercenter/tests
