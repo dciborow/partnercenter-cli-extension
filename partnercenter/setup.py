@@ -41,12 +41,7 @@ CLASSIFIERS = [
 ]
 
 # TODO: Add any additional SDK dependencies here
-DEPENDENCIES = [
-    'docker',
-    'azure-storage-blob',
-    'requests',
-    'pydantic'
-]
+DEPENDENCIES = ['docker', 'azure-storage-blob', 'requests', 'pydantic']
 
 EXTRA_DEPENDENCIES = {
     "test": ["azure-cli", "azure-cli-core", "azure-cli-testsdk", "pytest"]
