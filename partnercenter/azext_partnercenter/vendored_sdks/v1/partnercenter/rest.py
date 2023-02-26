@@ -99,7 +99,7 @@ class RESTClientObject(object):
                 ca_certs=configuration.ssl_ca_cert,
                 cert_file=configuration.cert_file,
                 key_file=configuration.key_file,
-                **addition_pool_args
+                **addition_pool_args,
             )
 
     def request(
