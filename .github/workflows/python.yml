@@ -55,4 +55,7 @@ jobs:
           python setup.py sdist bdist_wheel
           az extension add --source dist/partnercenter-0.2.1-py3-none-any.whl --yes
       - run: |
+          cd partnercenter
+          
+          python -m pip install .[test]
           python -m pytest azext_partnercenter/tests/
