@@ -105,9 +105,7 @@ class PlanTechnicalConfigurationClient(BaseClient):
             (
                 v
                 for v in variants
-                if v["resourceType"] == resource_type
-                and v["state"] == "Active"
-                and v["externalID"] == plan_external_id
+                if v["resourceType"] == resource_type and v["state"] == "Active" and v["externalID"] == plan_external_id
             ),
             None,
         )

@@ -141,7 +141,4 @@ class ServiceException(ApiException):
 
 def render_path(path_to_item):
     """Returns a string representation of a path"""
-    return "".join(
-        "[{0}]".format(pth) if isinstance(pth, int) else "['{0}']".format(pth)
-        for pth in path_to_item
-    )
+    return "".join("[{0}]".format(pth) if isinstance(pth, int) else "['{0}']".format(pth) for pth in path_to_item)

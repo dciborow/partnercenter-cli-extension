@@ -50,9 +50,7 @@ def _run_container(container_name, mount_path):
     img = "mcr.microsoft.com/container-package-app:latest"
     cmd = "sleep infinity"
     volumes = ["/var/run/docker.sock:/var/run/docker.sock", f"{mount_path}:/cpaMount", f"{absolute_path}:/root/.azure"]
-    return client.containers.run(
-        img, cmd, detach=True, volumes=volumes, name=container_name
-    )
+    return client.containers.run(img, cmd, detach=True, volumes=volumes, name=container_name)
 
 
 def _get_mount_path(manifest_file):
