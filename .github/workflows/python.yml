@@ -14,9 +14,9 @@ jobs:
     strategy:
       matrix:
         tools: ['black', 'bandit', 'pylint', 'flake8'] # 'pyright',
-        include:
-          - tools: pytest
-            args: -m not integration and not gpu
+#         include:
+#           - tools: pytest
+#             args: -m not integration and not gpu
 #           - tools: pytest
 #             args: -m integration
     steps:
@@ -28,3 +28,11 @@ jobs:
           args: ${{ matrix.args }}
           workdir: partnercenter
           testdir: azext_partnercenter/tests
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          python -m pip install --upgrade pip        
+          python -m pip install partnercenter[test]
+
+          python -m pytest partnercenter/azext_partnercenter/tests
