@@ -1,0 +1,36 @@
+[build-system]
+requires = ["flit"]
+build-backend = "flit.buildapi"
+
+[project]
+name =  "partnercenter"
+authors = [
+    {name = "Microsoft Corporation", email = "azpycli@microsoft.com"},
+]
+description = "Microsoft Azure CLI Extension for Partner Center"
+readme = "README.rst"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10"
+]
+requires-python = ">=3.7"
+dynamic = ["version"]
+
+[project.optional-dependencies]
+test = [
+    "azure-cli-testsdk"
+]
+
+[project.urls]
+Documentation = "https://github.com/azure/partnercenter-cli-extension/tree/main#readme"
+Source = "https://github.com/azure/partnercenter-cli-extension"
+Tracker = "https://github.com/azure/partnercenter-cli-extension/issues"
+
+[tool.flit.module]
+name = "partnercenter"
