@@ -8,7 +8,7 @@ authors = [
     {name = "Microsoft Corporation", email = "azpycli@microsoft.com"},
 ]
 description = "Microsoft Azure CLI Extension for Partner Center"
-readme = "README.rst"
+readme = "partnercenter/README.rst"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
