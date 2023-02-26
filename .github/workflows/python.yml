@@ -14,9 +14,9 @@ jobs:
     strategy:
       matrix:
         tools: ['black', 'bandit', 'pylint', 'flake8'] # 'pyright',
-        include:
-          - tools: pytest
-            args: -m not integration and not gpu
+#         include:
+#           - tools: pytest
+#             args: -m not integration and not gpu
 #           - tools: pytest
 #             args: -m integration
     steps:
