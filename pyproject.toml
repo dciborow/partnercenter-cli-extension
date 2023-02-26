@@ -34,3 +34,7 @@ Tracker = "https://github.com/azure/partnercenter-cli-extension/issues"
 
 [tool.flit.module]
 name = "partnercenter"
+
+[tool.black]
+line-length = 120
+fast = true
