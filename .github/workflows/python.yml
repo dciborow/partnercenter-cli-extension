@@ -40,4 +40,9 @@ jobs:
           python -m pip install --user azure-cli azure-cli-core azure-cli-testsdk
           python -m pip install --user --upgrade .[test]
 
+          python -m pip install setuptools wheel twine
+          python partnercenter/setup.py sdist bdist_wheel
+          az extension add --source dist/partnercenter-*.whl
+
+
           python -m pytest azext_partnercenter/tests
