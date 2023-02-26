@@ -10,12 +10,7 @@ from azext_partnercenter.models.listing_uri import ListingUri
 
 
 def add_uri(instance, uri_type, subtype, display_text, uri):
-    listing_uri = ListingUri(
-        type=uri_type,
-        subtype=subtype,
-        display_text=display_text,
-        uri=uri
-    )
+    listing_uri = ListingUri(type=uri_type, subtype=subtype, display_text=display_text, uri=uri)
     instance.append(listing_uri)
     return instance
 
@@ -23,7 +18,7 @@ def add_uri(instance, uri_type, subtype, display_text, uri):
 def list_uri(client, offer_id):
     listing = client.get(offer_id)
     if not listing:
-        raise CLIError(f'Offer \'{offer_id}\' not found.')
+        raise CLIError(f"Offer '{offer_id}' not found.")
     return listing.uris
 
 

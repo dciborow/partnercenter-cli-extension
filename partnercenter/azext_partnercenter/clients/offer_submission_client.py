@@ -32,10 +32,10 @@ class OfferSubmissionClient(BaseClient):
 
     def _map_submission(self, s: Submission) -> OfferSubmission:
         return OfferSubmission(
-            id = s.id.__root__.split('/')[-1],
-            lifecycle_state = s.lifecycle_state,
-            target = s.target.target_type,
-            status = s.status,
-            result = s.result,
-            created = s.created
+            id=s.id.__root__.split("/")[-1],
+            lifecycle_state=s.lifecycle_state,
+            target=s.target.target_type,
+            status=s.status,
+            result=s.result,
+            created=s.created,
         )
