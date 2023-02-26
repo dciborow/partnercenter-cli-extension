@@ -33,7 +33,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          python -m pip install --upgrade pip        
+          python -m pip install --upgrade pip
+          python -m pip install --upgrade pytest
+
           cd partnercenter
           python -m pip install .[test]
 
