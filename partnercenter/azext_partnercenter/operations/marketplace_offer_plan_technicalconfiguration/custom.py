@@ -42,5 +42,4 @@ def add_technical_configuration_bundle(
             )
         ],
     )
-    result = client.add_bundle(offer_id, plan_id, properties)
-    return result
+    return client.add_bundle(offer_id, plan_id, properties)

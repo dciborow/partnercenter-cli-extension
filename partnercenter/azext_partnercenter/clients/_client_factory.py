@@ -23,7 +23,7 @@ def get_api_client(cli_ctx, *_):
     api_client.configuration.access_token = creds[1]
 
     # set authorixation header to the raw token credentials fetched
-    api_client.set_default_header("Authorization", creds[0] + " " + creds[1])
+    api_client.set_default_header("Authorization", f"{creds[0]} {creds[1]}")
     api_client.set_default_header("If-Match", "*")
 
     return api_client
@@ -44,7 +44,7 @@ def get_api_client_for_graph(cli_ctx, *_):
     api_client.configuration.access_token = creds[1]
 
     # set authorixation header to the raw token credentials fetched
-    api_client.set_default_header("Authorization", creds[0] + " " + creds[1])
+    api_client.set_default_header("Authorization", f"{creds[0]} {creds[1]}")
     api_client.set_default_header("If-Match", "*")
 
     return api_client
