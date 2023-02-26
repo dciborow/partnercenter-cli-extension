@@ -37,6 +37,6 @@ jobs:
           python -m pip install --upgrade pytest
 
           cd partnercenter
-          python -m pip install .[test]
+          python -m pip install --upgrade .[test]
 
           python -m pytest azext_partnercenter/tests
