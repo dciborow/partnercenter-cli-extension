@@ -13,4 +13,3 @@ jobs:
     uses: microsoft/action-python/.github/workflows/validation.yml@0.2.0
     with:
       root: partnercenter
-      workdir: .
