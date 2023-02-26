@@ -43,7 +43,7 @@ CLASSIFIERS = [
 # TODO: Add any additional SDK dependencies here
 DEPENDENCIES = ["docker", "azure-storage-blob", "requests", "pydantic"]
 
-EXTRA_DEPENDENCIES = {"test": ["azure-cli", "azure-cli-core", "azure-cli-testsdk", "pytest"]}
+EXTRA_DEPENDENCIES = {"test": ["azure-cli-core", "azure-cli-testsdk", "pytest"]}
 
 with open("README.rst", "r", encoding="utf-8") as f:
     README = f.read()
