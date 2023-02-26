@@ -19,8 +19,9 @@ NAME = 'partnercenter'
 
 # Version extraction inspired from 'requests'
 with open(os.path.join('azext_partnercenter', 'version.py'), 'r') as fd:
-    VERSION = re.search(r'^VERSION\s*=\s*[\'"]([^\'"]*)[\'"]',
-                        fd.read(), re.MULTILINE).group(1)
+    VERSION = re.search(
+        r'^VERSION\s*=\s*[\'"]([^\'"]*)[\'"]', fd.read(), re.MULTILINE
+    )[1]
 
 if not VERSION:
     raise RuntimeError('Cannot find version information')
