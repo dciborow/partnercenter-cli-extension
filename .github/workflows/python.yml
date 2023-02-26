@@ -54,5 +54,5 @@ jobs:
           cd partnercenter
           python setup.py sdist bdist_wheel
           az extension add --source dist/partnercenter-*.whl
-
+      - run: |
           python -m pytest azext_partnercenter/tests/
