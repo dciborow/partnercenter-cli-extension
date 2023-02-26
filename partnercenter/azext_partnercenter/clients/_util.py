@@ -3,10 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
-# pylint: disable=line-too-long
-# pylint: disable=protected-access
-# pylint: disable=too-few-public-methods
-
 from urllib.parse import parse_qs, urlparse
 import json
 
