@@ -29,6 +29,7 @@ jobs:
           echo "$EOF" >> $GITHUB_ENV
       - name: Post Style result to PR
         uses: mshick/add-pr-comment@v1
+        continue-on-error: true
         with:
           message: ${{ env.STYLE_OUTPUT }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -59,6 +60,7 @@ jobs:
           echo "$EOF" >> $GITHUB_ENV          
       - name: Post Linter result to PR
         uses: mshick/add-pr-comment@v1
+        continue-on-error: true
         with:
           message: ${{ env.LINTER_OUTPUT }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
