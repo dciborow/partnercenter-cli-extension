@@ -19,7 +19,10 @@ class Offer(Model):
         self.id = kwargs.get('id', None)
         self.alias = kwargs.get('alias', None)
         self.type = kwargs.get('type', None)
-        self.resource = kwargs.get('resource', None)
+        self._resource = kwargs.get('resource', None)
+
+    def durable_id(self):
+        return self._resource.durable_id
 
 
 class OfferType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
