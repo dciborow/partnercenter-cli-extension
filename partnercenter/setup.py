@@ -39,16 +39,12 @@ CLASSIFIERS = [
     'License :: OSI Approved :: MIT License',
 ]
 
-# TODO: Add any additional SDK dependencies here
-DEPENDENCIES = [
-    'docker',
-    'azure-storage-blob',
-    'requests',
-    'pydantic'
-]
+with open('../requirements.txt') as f:
+    DEPENDENCIES = f.read().splitlines()
 
 EXTRA_DEPENDENCIES = {
     'test': [
+        'pytest',
         'azure-cli-core',
         'azure-cli-testsdk',
     ]

@@ -1,6 +1,7 @@
 from azure.cli.testsdk import ScenarioTest
 
-class PartnerCenterMarketplaceOfferPlanListingScenarioTest(ScenarioTest):
+
+class PartnerCenterMarketplaceApplicationScenarioTest(ScenarioTest):
     def setUp(self):
         super().setUp()
         self._initialize_variables()
@@ -14,7 +15,7 @@ class PartnerCenterMarketplaceOfferPlanListingScenarioTest(ScenarioTest):
                 "offer_alias": f"{self.offer_id}-alias",
                 "plan_id": self.plan_id,
                 "plan_name": self.plan_id + "name",
-            },            
+            },
         )
 
     def _create_offer(self):
@@ -41,6 +42,12 @@ class PartnerCenterMarketplaceOfferPlanListingScenarioTest(ScenarioTest):
         )
 
     def _create_ma_plan_listing(self):
+        self.cmd(
+            "partnercenter marketplace offer plan listing create --offer-id {offer_id} --id {plan_id} -n '{plan_name}'",
+            checks=[self.check("id", "{plan_id}"), self.check("name", "{plan_name}")],
+        )
+
+    def _create_ma_tech_config(self):
         self.cmd(
             "partnercenter marketplace offer plan listing create --offer-id {offer_id} --id {plan_id} -n '{plan_name}'",
             checks=[self.check("id", "{plan_id}"), self.check("name", "{plan_name}")],

@@ -9,10 +9,10 @@
 from azext_partnercenter.models.listing_image import ListingImage
 from azext_partnercenter.clients.offer_listing_client import OfferListingClient
 from azext_partnercenter.clients.offer_client import OfferClient
-from azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (
-    ProductClient, VariantClient, ListingImageClient)
+from azext_partnercenter.vendored_sdks.v1.partnercenter.apis import ProductClient, VariantClient, ListingImageClient
 from azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_listings_listing_image import (
-    MicrosoftIngestionApiModelsListingsListingImage)
+    MicrosoftIngestionApiModelsListingsListingImage,
+)
 
 from ._client_factory import get_api_client
 
@@ -30,18 +30,17 @@ class ListingMediaClient:
         offer = self._offer_client.get(offer_external_id)
         if offer is None:
             return None
-        offer_resource_id = offer._resource.durable_id
+        offer_resource_id = offer.resource.durable_id
 
         listing = self._offer_client.get_listing(offer_external_id)
 
         if listing is None:
             return None
-        listing_resource_id = listing._resource.durable_id
+        listing_resource_id = listing.resource.durable_id
 
         images = self._listing_image_client.products_product_id_listings_listing_id_images_get(
-            offer_resource_id, listing_resource_id,
-            self._get_authorication_token(),
-            expand="$expand=FileSasUri")
+            offer_resource_id, listing_resource_id, self._get_authorication_token(), expand="$expand=FileSasUri"
+        )
 
         return self._map_images(images)
 
@@ -49,18 +48,16 @@ class ListingMediaClient:
         offer = self._offer_client.get(offer_external_id)
         if offer is None:
             return None
-        offer_resource_id = offer._resource.durable_id
+        offer_resource_id = offer.resource.durable_id
 
         listing = self._offer_client.get_listing(offer_external_id)
         if listing is None:
             return None
-        listing_resource_id = listing._resource.durable_id
+        listing_resource_id = listing.resource.durable_id
 
         images = self._listing_image_client.products_product_id_listings_listing_id_images_get(
-            offer_resource_id,
-            listing_resource_id,
-            self._get_authorication_token(),
-            expand="$expand=FileSasUri")
+            offer_resource_id, listing_resource_id, self._get_authorication_token(), expand="$expand=FileSasUri"
+        )
 
         deleted_ids = []
         for _, x in enumerate(images.value):
@@ -68,27 +65,26 @@ class ListingMediaClient:
             if cur_listing_image.type == image_type:
                 image_id = cur_listing_image.id
                 self._listing_image_client.products_product_id_listings_listing_id_images_image_id_delete(
-                    offer_resource_id,
-                    listing_resource_id,
-                    image_id,
-                    self._get_authorication_token())
+                    offer_resource_id, listing_resource_id, image_id, self._get_authorication_token()
+                )
                 deleted_ids.append(image_id)
 
         return deleted_ids
 
     def add_listing_image(self, offer_external_id, image_type, file_path):
         import ntpath
+
         file = ntpath.basename(file_path)
 
         offer = self._offer_client.get(offer_external_id)
         if offer is None:
             return None
-        offer_resource_id = offer._resource.durable_id
+        offer_resource_id = offer.resource.durable_id
 
         listing = self._offer_client.get_listing(offer_external_id)
         if listing is None:
             return None
-        listing_resource_id = listing._resource.durable_id
+        listing_resource_id = listing.resource.durable_id
 
         file_name = self._get_file_name(file)
 
@@ -110,14 +106,16 @@ class ListingMediaClient:
             order=order,
             file_sas_uri=image.file_sas_uri,
             id=image.id,
-            odata_etag=image.odata_etag)
+            odata_etag=image.odata_etag,
+        )
 
         result = self._listing_image_client.products_product_id_listings_listing_id_images_image_id_put(
             offer_resource_id,
             listing_resource_id,
             image.id,
             self._get_authorication_token(),
-            microsoft_ingestion_api_models_listings_listing_image=listing_image)
+            microsoft_ingestion_api_models_listings_listing_image=listing_image,
+        )
 
         return self._map_image(result)
 
@@ -126,19 +124,24 @@ class ListingMediaClient:
         resource_type = "ListingImage"
         order = 0
 
-        listing_image = MicrosoftIngestionApiModelsListingsListingImage(resource_type=resource_type, file_name=file_name, type=image_type, state=state, order=order)
+        listing_image = MicrosoftIngestionApiModelsListingsListingImage(
+            resource_type=resource_type, file_name=file_name, type=image_type, state=state, order=order
+        )
 
-        result = self._listing_image_client.products_product_id_listings_listing_id_images_post(offer_resource_id,
-                                                                                                listing_resource_id,
-                                                                                                self._get_authorication_token(),
-                                                                                                microsoft_ingestion_api_models_listings_listing_image=listing_image)
+        result = self._listing_image_client.products_product_id_listings_listing_id_images_post(
+            offer_resource_id,
+            listing_resource_id,
+            self._get_authorication_token(),
+            microsoft_ingestion_api_models_listings_listing_image=listing_image,
+        )
 
         return self._map_image(result)
 
     def _upload_media(self, upload_file_path, listing_image: ListingImage):
         from azure.storage.blob import BlobClient
+
         blob_client = BlobClient.from_blob_url(listing_image.file_sas_uri)
-        with open(upload_file_path, 'rb') as data:
+        with open(upload_file_path, "rb") as data:
             result = blob_client.upload_blob(data)
             return result
 
@@ -149,8 +152,15 @@ class ListingMediaClient:
         return list(map(self._map_image, images.value))
 
     def _map_image(self, image):
-        listing_image = ListingImage(fileName=image.file_name, type=image.type, fileSasUri=image.file_sas_uri, state=image.state,
-                                     order=image.order, odata_etag=image.odata_etag, id=image.id)
+        listing_image = ListingImage(
+            fileName=image.file_name,
+            type=image.type,
+            fileSasUri=image.file_sas_uri,
+            state=image.state,
+            order=image.order,
+            odata_etag=image.odata_etag,
+            id=image.id,
+        )
 
         return listing_image
 
