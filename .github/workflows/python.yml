@@ -20,6 +20,8 @@ jobs:
           azdev extension add partnercenter
       - name: azdev style
         run: |
+          set -e
+
           source env/bin/activate
           OUTPUT=$(azdev style partnercenter)
 
@@ -51,6 +53,8 @@ jobs:
           azdev extension add partnercenter
       - name: azdev linter
         run: |
+          set -e
+
           source env/bin/activate
           OUTPUT=$(azdev linter partnercenter)
 
