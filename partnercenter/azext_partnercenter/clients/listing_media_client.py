@@ -63,7 +63,7 @@ class ListingMediaClient:
             expand="$expand=FileSasUri")
 
         deleted_ids = []
-        for _, x in enumerate(images.value):
+        for x in images.value:
             cur_listing_image = self._map_image(x)
             if cur_listing_image.type == image_type:
                 image_id = cur_listing_image.id
@@ -139,8 +139,7 @@ class ListingMediaClient:
         from azure.storage.blob import BlobClient
         blob_client = BlobClient.from_blob_url(listing_image.file_sas_uri)
         with open(upload_file_path, 'rb') as data:
-            result = blob_client.upload_blob(data)
-            return result
+            return blob_client.upload_blob(data)
 
     def _get_file_name(self, file):
         return file
@@ -149,10 +148,15 @@ class ListingMediaClient:
         return list(map(self._map_image, images.value))
 
     def _map_image(self, image):
-        listing_image = ListingImage(fileName=image.file_name, type=image.type, fileSasUri=image.file_sas_uri, state=image.state,
-                                     order=image.order, odata_etag=image.odata_etag, id=image.id)
-
-        return listing_image
+        return ListingImage(
+            fileName=image.file_name,
+            type=image.type,
+            fileSasUri=image.file_sas_uri,
+            state=image.state,
+            order=image.order,
+            odata_etag=image.odata_etag,
+            id=image.id,
+        )
 
     def _get_authorication_token(self):
         return self._api_client.configuration.access_token

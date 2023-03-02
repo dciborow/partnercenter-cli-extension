@@ -16,10 +16,10 @@ class Offer(Model):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.id = kwargs.get('id', None)
-        self.alias = kwargs.get('alias', None)
-        self.type = kwargs.get('type', None)
-        self._resource = kwargs.get('resource', None)
+        self.id = kwargs.get('id')
+        self.alias = kwargs.get('alias')
+        self.type = kwargs.get('type')
+        self._resource = kwargs.get('resource')
 
     def durable_id(self):
         return self._resource.durable_id

@@ -27,8 +27,9 @@ class OfferSubmissionClient(BaseClient):
 
     def publish(self, offer_external_id, submission_id, target):
         offer = self._offer_client.get(offer_external_id)
-        result = self._graph_api_client.publish_submission(target, offer.durable_id, submission_id)
-        return result
+        return self._graph_api_client.publish_submission(
+            target, offer.durable_id, submission_id
+        )
 
     @staticmethod
     def _map_submission(s: Submission) -> OfferSubmission:
