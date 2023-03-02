@@ -21,7 +21,7 @@ jobs:
       - name: azdev style
         run: |
           source env/bin/activate
-          OUTPUT=$(azdev style partnercenter || continue)
+          OUTPUT=$(azdev style partnercenter)
 
           EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
           echo "STYLE_OUTPUT<<$EOF" >> $GITHUB_ENV
@@ -51,7 +51,7 @@ jobs:
       - name: azdev linter
         run: |
           source env/bin/activate
-          OUTPUT=$(azdev linter partnercenter || continue)
+          OUTPUT=$(azdev linter partnercenter)
 
           EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
           echo "LINTER_OUTPUT<<$EOF" >> $GITHUB_ENV
