@@ -5,19 +5,39 @@
 # pylint: disable=line-too-long)
 
 from azext_partnercenter.operations.marketplace_offer import MarketplaceOfferOperations
-from azext_partnercenter.operations.marketplace_offer_plan import MarketplaceOfferPlanOperations
-from azext_partnercenter.operations.marketplace_offer_plan_technicalconfiguration import MarketplaceOfferPlanTechnicalConfigurationOperations
-from azext_partnercenter.operations.marketplace_offer_plan_listing import MarketplaceOfferPlanListingOperations
-from azext_partnercenter.operations.marketplace_offer_listing_contact import MarketplaceOfferListingContactOperations
-from azext_partnercenter.operations.marketplace_offer_listing_uri import MarketplaceOfferListingUriOperations
-from azext_partnercenter.operations.marketplace_offer_listing import MarketplaceOfferListingOperations
-from azext_partnercenter.operations.marketplace_offer_setup import MarketplaceOfferSetupOperations
-from azext_partnercenter.operations.marketplace_offer_listing_media import MarketplaceOfferListingImageOperations
-from azext_partnercenter.operations.marketplace_offer_package import MarketplaceOfferPackageOperations
-from azext_partnercenter.operations.marketplace_offer_submission import MarketplaceOfferSubmissionOperations
+from azext_partnercenter.operations.marketplace_offer_listing import (
+    MarketplaceOfferListingOperations,
+)
+from azext_partnercenter.operations.marketplace_offer_listing_contact import (
+    MarketplaceOfferListingContactOperations,
+)
+from azext_partnercenter.operations.marketplace_offer_listing_media import (
+    MarketplaceOfferListingImageOperations,
+)
+from azext_partnercenter.operations.marketplace_offer_listing_uri import (
+    MarketplaceOfferListingUriOperations,
+)
+from azext_partnercenter.operations.marketplace_offer_package import (
+    MarketplaceOfferPackageOperations,
+)
+from azext_partnercenter.operations.marketplace_offer_plan import (
+    MarketplaceOfferPlanOperations,
+)
+from azext_partnercenter.operations.marketplace_offer_plan_listing import (
+    MarketplaceOfferPlanListingOperations,
+)
+from azext_partnercenter.operations.marketplace_offer_plan_technicalconfiguration import (
+    MarketplaceOfferPlanTechnicalConfigurationOperations,
+)
+from azext_partnercenter.operations.marketplace_offer_setup import (
+    MarketplaceOfferSetupOperations,
+)
+from azext_partnercenter.operations.marketplace_offer_submission import (
+    MarketplaceOfferSubmissionOperations,
+)
 
 
-class PartnerCenterSubGroupCommandsLoader():
+class PartnerCenterSubGroupCommandsLoader:
     def __init__(self, commands_loader):
         self.commands_loader = commands_loader
         self.subgroup_command_loaders = [
@@ -31,7 +51,7 @@ class PartnerCenterSubGroupCommandsLoader():
             MarketplaceOfferPlanListingOperations(self),
             MarketplaceOfferListingContactOperations(self),
             MarketplaceOfferListingUriOperations(self),
-            MarketplaceOfferListingImageOperations(self)
+            MarketplaceOfferListingImageOperations(self),
         ]
 
     def load_arguments(self, _):
