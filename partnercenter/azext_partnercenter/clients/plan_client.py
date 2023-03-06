@@ -109,7 +109,7 @@ class PlanClient(BaseClient):
             offer_durable_id, plan_durable_id, self._api_client.configuration.access_token
         )
 
-        item = Plan(
+        return Plan(
             id=variant["externalID"],
             name=variant["friendlyName"],
             offer_id=product["externalIDs"][0]["value"],
@@ -117,7 +117,6 @@ class PlanClient(BaseClient):
             cloud_availabilities=variant["cloudAvailabilities"],
             resource=Resource(id=variant["id"], type=variant["resourceType"]),
         )
-        return item
 
     def delete(self, offer_external_id, plan_external_id):
         offer = self._offer_client.get(offer_external_id)

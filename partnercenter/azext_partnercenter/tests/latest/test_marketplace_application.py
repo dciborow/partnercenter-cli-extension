@@ -78,12 +78,12 @@ class PartnerCenterMarketplaceApplicationScenarioTest(ScenarioTest):
                 "offer_alias": f"{self.offer_id}-alias",
                 "summary": "A storage offer for Unreal Engine Game Developers",
                 "short_description": "Unreal Cloud DDC for Unreal Engine game development.",
-                "description": "Unreal Cloud DDC for Unreal Engine game development.",  # "@description.html",
+                "description": "Unreal Cloud DDC for Unreal Engine game development.",
                 "plan_id": self.plan_id,
-                "plan_name": self.plan_id + "name",
+                "plan_name": f"{self.plan_id}name",
                 "plan_summary": "Unreal Cloud DDC for Unreal Engine game development.",
-                "plan_description": "Unreal Cloud DDC for Unreal Engine game development.",  # "@description.html",
-            },
+                "plan_description": "Unreal Cloud DDC for Unreal Engine game development.",
+            }
         )
 
     def _create_offer(self):

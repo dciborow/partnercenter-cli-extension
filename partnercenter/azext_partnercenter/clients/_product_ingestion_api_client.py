@@ -92,7 +92,7 @@ class ProductIngestionApiClient:
         """Updates the technical configuration for a 'list and sell' offer, which uses a CNAB bundle"""
 
         durable_id = DurableId(__root__=f'container-plan-technical-configuration/{offer_durable_id}/{plan_durable_id}')
-        product_id = DurableId(__root__="product/" + offer_durable_id)
+        product_id = DurableId(__root__=f"product/{offer_durable_id}")
         plan_id = DurableId(__root__=f"plan/{offer_durable_id}/{plan_durable_id}")
 
         configuration = ContainerPlanTechnicalConfiguration(
@@ -120,8 +120,7 @@ class ProductIngestionApiClient:
         response = self.__call_api('get-submission', f'submission/{offer_durable_id}')
         json = response.json() | {}
 
-        submissions = list(map(Submission.parse_obj, json['value']))
-        return submissions
+        return list(map(Submission.parse_obj, json['value']))
 
     def get_submission(self, offer_durable_id, submission_id):
         """Gets the response from the Graph endpoint of submissions
@@ -135,7 +134,7 @@ class ProductIngestionApiClient:
 
     def publish_submission(self, target, offer_durable_id, submission_id=None):
         """Publishes a product, either all its draft changes or a specific submission using the submission_id"""
-        product_id = DurableId(__root__="product/" + offer_durable_id)
+        product_id = DurableId(__root__=f"product/{offer_durable_id}")
         durable_id = DurableId(__root__=f"submission/{offer_durable_id}/{submission_id}") if submission_id is not None else None
 
         resource = {
@@ -165,8 +164,9 @@ class ProductIngestionApiClient:
         path = f'container-plan-technical-configuration/{offer_durable_id}/{plan_durable_id}'
         response = self.__call_api(operation_id, path)
 
-        configuration = self._parse_container_technical_configuration_response(response, sell_through_microsoft)
-        return configuration
+        return self._parse_container_technical_configuration_response(
+            response, sell_through_microsoft
+        )
 
     def get_resource_tree(self, offer_durable_id):
         """Returns the raw response as a dictionary"""
@@ -194,9 +194,7 @@ class ProductIngestionApiClient:
                 'payloadType': 'cnab',
                 'clusterExtensionType': json['clusterExtensionType'] if 'clusterExtensionType' in json else None
             }
-            properties = ContainerCnabPlanTechnicalConfigurationProperties.construct(**data)
-            return properties
-
+            return ContainerCnabPlanTechnicalConfigurationProperties.construct(**data)
         return ContainerPlanTechnicalConfiguration.parse_obj(response.json())
 
     def _get_configure_resources_status(self, job_id):
@@ -235,8 +233,9 @@ class ProductIngestionApiClient:
         path = f'managed-application-plan-technical-configuration/{offer_durable_id}/{plan_durable_id}'
         response = self.__call_api(operation_id, path)
 
-        configuration = self._parse_managed_application_technical_configuration_response(response)
-        return configuration
+        return self._parse_managed_application_technical_configuration_response(
+            response
+        )
 
     def _parse_managed_application_technical_configuration_response(self, response) -> PlanTechnicalConfiguration:
         """If the offer setup is configured to sell through microsoft, then CNAB, otherwise it's Image
