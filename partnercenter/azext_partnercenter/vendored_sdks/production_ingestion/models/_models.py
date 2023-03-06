@@ -175,6 +175,11 @@ class Resource(BaseModel):
     validations: Optional[List[Validation]] = None
 
 
+class PlanTechnicalConfiguration(Resource):
+    product: ResourceReference
+    plan: ResourceReference
+
+
 class ContainerPlanTechnicalConfiguration(Resource):
     product: ResourceReference
     plan: ResourceReference

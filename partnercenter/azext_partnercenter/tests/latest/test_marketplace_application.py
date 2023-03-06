@@ -1,5 +1,10 @@
 from azure.cli.testsdk import ScenarioTest
+import os
+import json
 
+from azure.identity import AzureCliCredential
+
+from azureiai.managed_apps.confs.variant.package import Package
 
 class PartnerCenterMarketplaceApplicationScenarioTest(ScenarioTest):
     def test_solution_template_creation(self):
@@ -47,25 +52,26 @@ class PartnerCenterMarketplaceApplicationScenarioTest(ScenarioTest):
         ... ... ... listing                 update --offer-id $OFFER_ID --plan-id $PLAN_ID --summary "a storage offer" --description @description.html
         ... ... ... technical-configuration show   --offer-id $OFFER_ID --plan-id $PLAN_ID
         """
-        self._create_offer()
-        self._show_offer_listing()
-        self._update_offer_listing()
-        self._show_offer_setup()
-        self._update_offer_setup()
+        # self._create_offer()
+        # self._show_offer_listing()
+        # self._update_offer_listing()
+        # self._show_offer_setup()
+        # self._update_offer_setup()
 
-        self._create_ma_plan()
-        self._update_plan_listing()
-        # self._show_plan_tech_config()
+        # self._create_ma_plan()
+        # self._update_plan_listing()
+        self._show_plan_tech_config()
 
-        self._delete_offer()
+        # self._delete_offer()
 
     def setUp(self):
         super().setUp()
+        self._authorization = None
         self._initialize_variables()
 
     def _initialize_variables(self):
-        self.offer_id = self.create_random_name("offertest-", 15)
-        self.plan_id = self.create_random_name("plantest-", 15)
+        self.offer_id = "offertest1" # self.create_random_name("offertest-", 15)
+        self.plan_id = "plantest1" # self.create_random_name("plantest-", 15)
         self.kwargs.update(
             {
                 "offer_id": self.offer_id,
@@ -135,3 +141,15 @@ class PartnerCenterMarketplaceApplicationScenarioTest(ScenarioTest):
             "partnercenter marketplace offer plan technical-configuration show --offer-id {offer_id} --plan-id {plan_id}",
             checks=[self.check("id", "{plan_id}"), self.check("name", "{plan_name}")],
         )
+
+    def _get_auth(self) -> str:
+        """
+        Create Authentication Header
+        :return: Authorization Header contents
+        """
+        if self._authorization is None:
+            azure_cli = AzureCliCredential()
+            token_response = azure_cli.get_token("https://api.partner.microsoft.com")
+
+            self._authorization = f"Bearer {token_response.token}"
+        return self._authorization

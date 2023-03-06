@@ -14,6 +14,7 @@ from azext_partnercenter.vendored_sdks.production_ingestion.models import (
     Submission,
     ResourceTarget,
     TargetType,
+    PlanTechnicalConfiguration,
     ContainerPlanTechnicalConfiguration,
     ContainerCnabPlanTechnicalConfigurationProperties,
     ConfigureResources,
@@ -154,7 +155,7 @@ class ProductIngestionApiClient:
         result = self.configure_resources(resource)
         return result.dict(exclude={'$schema'}, exclude_unset=True)
 
-    def get_container_plan_technical_configuration(self, offer_durable_id, plan_durable_id, sell_through_microsoft):
+    def get_container_plan_technical_configuration(self, offer_durable_id, plan_durable_id, sell_through_microsoft) -> ContainerPlanTechnicalConfiguration | ContainerCnabPlanTechnicalConfigurationProperties:
         """Gets the response from the Graph endpoint for the container plan technical configuration
 
         :return: instance of ContainerPlanTechnicalConfiguration [azext_partnercenter.vendored_sdks.production_ingestion.models.container_plan_technical_configuration]
@@ -164,7 +165,7 @@ class ProductIngestionApiClient:
         path = f'container-plan-technical-configuration/{offer_durable_id}/{plan_durable_id}'
         response = self.__call_api(operation_id, path)
 
-        configuration = self._parse_technical_configuration_response(response, sell_through_microsoft)
+        configuration = self._parse_container_technical_configuration_response(response, sell_through_microsoft)
         return configuration
 
     def get_resource_tree(self, offer_durable_id):
@@ -174,8 +175,8 @@ class ProductIngestionApiClient:
 
         return self.__call_api(operation_id, path).json()
 
-    def _parse_technical_configuration_response(self, response, sell_through_microsoft):
-        r"""If the offer setup is configured to sell through microsoft, then CNAB, otherwise it's Image
+    def _parse_container_technical_configuration_response(self, response, sell_through_microsoft):
+        """If the offer setup is configured to sell through microsoft, then CNAB, otherwise it's Image
 
         :param response: :class:`Response <Response>` object from the Response library
         :param sell_through_microsoft Boolean. whether this is a sell through microsoft Setup
@@ -226,3 +227,21 @@ class ProductIngestionApiClient:
         params = a.copy() if a is not None else {}
         params.update(b if b is not None else {})
         return params
+
+    def get_managed_app_plan_technical_configuration(self, offer_durable_id, plan_durable_id) -> PlanTechnicalConfiguration:
+        """Gets the response from the Graph endpoint for the managed application plan technical configuration"""
+
+        operation_id = 'get-managed-application-plan-technical-configuration'
+        path = f'managed-application-plan-technical-configuration/{offer_durable_id}/{plan_durable_id}'
+        response = self.__call_api(operation_id, path)
+
+        configuration = self._parse_managed_application_technical_configuration_response(response)
+        return configuration
+
+    def _parse_managed_application_technical_configuration_response(self, response) -> PlanTechnicalConfiguration:
+        """If the offer setup is configured to sell through microsoft, then CNAB, otherwise it's Image
+
+        :param response: :class:`Response <Response>` object from the Response library
+        """
+        json = response.json() | {}
+        return PlanTechnicalConfiguration.parse_obj(json)

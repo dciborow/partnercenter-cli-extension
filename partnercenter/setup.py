@@ -41,6 +41,7 @@ CLASSIFIERS = [
 
 # TODO: Add any additional SDK dependencies here
 DEPENDENCIES = [
+    'az-partner-center-cli',
     'docker',
     'azure-storage-blob',
     'requests',

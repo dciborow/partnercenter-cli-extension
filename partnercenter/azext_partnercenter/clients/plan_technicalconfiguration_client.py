@@ -36,6 +36,8 @@ class PlanTechnicalConfigurationClient(BaseClient):
 
         if variant_package_branch.product.resource_type == 'AzureContainer':
             technical_configuration = self._graph_api_client.get_container_plan_technical_configuration(offer_durable_id, plan_durable_id, sell_through_microsoft)
+        if variant_package_branch.product.resource_type == 'AzureApplication':
+            technical_configuration = self._graph_api_client.get_managed_app_plan_technical_configuration(offer_durable_id, plan_durable_id)
         else:
             technical_configuration = self._get_plan_technical_configuration(variant_package_branch.product.id, variant_package_branch.variant_id)
             technical_configuration['planId'] = plan_external_id
@@ -101,7 +103,7 @@ class PlanTechnicalConfigurationClient(BaseClient):
         """Since we don't know what type of technical plan this will be for now unless we map the types to the schema, this gets any technical configuration type"""
 
         resources = self._get_resource_tree(offer_durable_id)
-        technical_configuration = None
+        technical_configuration = {}
 
         for r in resources:
             if 'plan-technical-configuration' in r['id'] and plan_durable_id in r['plan']:
